@@ -16,8 +16,10 @@ public class ListingDragListener implements DragListener,DropListener,RemoveList
 	DragNDropListView mList;
 	private Context mContext;
 
-	public ListingDragListener(Context context,DragNDropAdapter adapter,DragNDropListView mListView) {
+	public ListingDragListener(Context context,DragNDropAdapter adapter,DragNDropListView list) {
 		mAdapter = adapter;
+		mContext = context;
+		mList = list;
 	}
 	@Override
 	public void onRemove(int which) {
@@ -32,9 +34,8 @@ public class ListingDragListener implements DragListener,DropListener,RemoveList
 	}
 	@Override
 	public void onStartDrag(View itemView) {
-		//itemView.setVisibility(View.INVISIBLE);
-		
-		itemView.setBackground(mContext.getResources().getDrawable(R.drawable.drag));
+		itemView.setVisibility(View.INVISIBLE);
+		//itemView.setBackground(mContext.getResources().getDrawable(R.drawable.drag));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package hackathon.olx.dragndrop;
 
+import hackathon.olx.personalization.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
@@ -129,7 +130,9 @@ public class DragNDropListView extends ListView {
         
         Context context = getContext();
         ImageView v = new ImageView(context);
-        v.setImageBitmap(bitmap);      
+        //v.setImageBitmap(bitmap); 
+        v.setBackground(context.getResources().getDrawable(R.drawable.drag));
+        
 
         WindowManager mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         mWindowManager.addView(v, mWindowParams);

@@ -26,7 +26,7 @@ import hackathon.olx.models.HomePageListing;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -36,7 +36,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-public class DragNDropListActivity extends ListActivity {
+public class DragNDropListActivity extends Activity {
 	
     /** Called when the activity is first created. */
     @Override
@@ -85,7 +85,7 @@ public class DragNDropListActivity extends ListActivity {
     	Context context = getApplicationContext();
     	List<HomePageListing> items = populateListingData(context);
     	DragNDropAdapter adapter = new DragNDropAdapter(context, items);
-    	DragNDropListView listView = (DragNDropListView) getListView();
+    	DragNDropListView listView = (DragNDropListView) findViewById(R.id.top_listing);
     	listView.setAdapter(adapter);
     	ListingDragListener listener = new ListingDragListener(context, adapter, listView);
     	listView.setDropListener(listener);
@@ -93,54 +93,54 @@ public class DragNDropListActivity extends ListActivity {
     	listView.setRemoveListener(listener);
     }
 
-	private DropListener mDropListener = 
-		new DropListener() {
-        public void onDrop(int from, int to) {
-        	ListAdapter adapter = getListAdapter();
-        	if (adapter instanceof DragNDropAdapter) {
-        		((DragNDropAdapter)adapter).onDrop(from, to);
-        		getListView().invalidateViews();
-        	}
-        }
-    };
-    
-    private RemoveListener mRemoveListener =
-        new RemoveListener() {
-        public void onRemove(int which) {
-        	ListAdapter adapter = getListAdapter();
-        	if (adapter instanceof DragNDropAdapter) {
-        		((DragNDropAdapter)adapter).onRemove(which);
-        		getListView().invalidateViews();
-        	}
-        }
-    };
-    
-    private DragListener mDragListener =
-    	new DragListener() {
-
-    	int backgroundColor = 0xe0103010;
-    	int defaultBackgroundColor;
-    	
-			public void onDrag(int x, int y, ListView listView) {
-				// TODO Auto-generated method stub
-			}
-
-			public void onStartDrag(View itemView) {
-				itemView.setVisibility(View.INVISIBLE);
-				defaultBackgroundColor = itemView.getDrawingCacheBackgroundColor();
-				itemView.setBackgroundColor(backgroundColor);
-				ImageView iv = (ImageView)itemView.findViewById(R.id.ImageView01);
-				if (iv != null) iv.setVisibility(View.INVISIBLE);
-			}
-
-			public void onStopDrag(View itemView) {
-				itemView.setVisibility(View.VISIBLE);
-				itemView.setBackgroundColor(defaultBackgroundColor);
-				ImageView iv = (ImageView)itemView.findViewById(R.id.ImageView01);
-				if (iv != null) iv.setVisibility(View.VISIBLE);
-			}
-    	
-    };
-    
+//	private DropListener mDropListener = 
+//		new DropListener() {
+//        public void onDrop(int from, int to) {
+//        	ListAdapter adapter = getListAdapter();
+//        	if (adapter instanceof DragNDropAdapter) {
+//        		((DragNDropAdapter)adapter).onDrop(from, to);
+//        		getListView().invalidateViews();
+//        	}
+//        }
+//    };
+//    
+//    private RemoveListener mRemoveListener =
+//        new RemoveListener() {
+//        public void onRemove(int which) {
+//        	ListAdapter adapter = getListAdapter();
+//        	if (adapter instanceof DragNDropAdapter) {
+//        		((DragNDropAdapter)adapter).onRemove(which);
+//        		getListView().invalidateViews();
+//        	}
+//        }
+//    };
+//    
+//    private DragListener mDragListener =
+//    	new DragListener() {
+//
+//    	int backgroundColor = 0xe0103010;
+//    	int defaultBackgroundColor;
+//    	
+//			public void onDrag(int x, int y, ListView listView) {
+//				// TODO Auto-generated method stub
+//			}
+//
+//			public void onStartDrag(View itemView) {
+//				itemView.setVisibility(View.INVISIBLE);
+//				defaultBackgroundColor = itemView.getDrawingCacheBackgroundColor();
+//				itemView.setBackgroundColor(backgroundColor);
+//				ImageView iv = (ImageView)itemView.findViewById(R.id.ImageView01);
+//				if (iv != null) iv.setVisibility(View.INVISIBLE);
+//			}
+//
+//			public void onStopDrag(View itemView) {
+//				itemView.setVisibility(View.VISIBLE);
+//				itemView.setBackgroundColor(defaultBackgroundColor);
+//				ImageView iv = (ImageView)itemView.findViewById(R.id.ImageView01);
+//				if (iv != null) iv.setVisibility(View.VISIBLE);
+//			}
+//    	
+//    };
+//    
     private static String[] mListContent={"Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"};
 }
